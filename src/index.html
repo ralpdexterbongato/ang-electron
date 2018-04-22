@@ -2,13 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AngElectron</title>
-  <base href="/">
-
+  <title></title>
+  <base href="./">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa|Roboto|Material+Icons" rel="stylesheet">
 </head>
 <body>
+  <div class="frame-container">
+    <div class="logo">
+      <i class="material-icons">desktop_windows</i>
+      <p>Desktop portfolio</p>
+    </div>
+    <div class="frame-button-wraper">
+      <button type="button" name="button" id="min-btn"><img src="./assets/min.png" alt=""></button>
+      <button type="button" name="button" id="max-btn"><img src="./assets/max.png" alt=""></button>
+      <button type="button" name="button" id="close-btn"><img src="./assets/close.png" alt=""></button>
+    </div>
+  </div>
   <app-root></app-root>
+  <script>
+      (function () {
+          // Retrieve remote BrowserWindow
+          const {BrowserWindow} = require('electron').remote
+
+          function init() {
+              // Minimize task
+              document.getElementById("min-btn").addEventListener("click", (e) => {
+                  var window = BrowserWindow.getFocusedWindow();
+                  window.minimize();
+              });
+
+              // Maximize window
+              document.getElementById("max-btn").addEventListener("click", (e) => {
+                  var window = BrowserWindow.getFocusedWindow();
+                  if(window.isMaximized()){
+                      window.unmaximize();
+                  }else{
+                      window.maximize();
+                  }
+              });
+
+              // Close app
+              document.getElementById("close-btn").addEventListener("click", (e) => {
+                  var window = BrowserWindow.getFocusedWindow();
+                  window.close();
+              });
+          };
+
+          document.onreadystatechange =  () => {
+              if (document.readyState == "complete") {
+                  init();
+              }
+          };
+      })();
+  </script>
 </body>
 </html>

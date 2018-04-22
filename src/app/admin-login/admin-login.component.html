@@ -1,0 +1,22 @@
+<div class="fixed-load" [hidden]="!loading">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+</div>
+<div class="login-page-container">
+  <div class="center-form-box">
+    <h1 class="welcome-title">Welcome back</h1>
+    <p class="welcome-desc">Please log-in to continue</p>
+    <div class="input-login-wrap">
+      <input type="text" [(ngModel)]="email" [ngClass]="{'active':email!=''}" id="email" autocomplete="off" required >
+      <label [ngClass]="{'active':email!=''}">Email</label>
+    </div>
+    <div class="input-login-wrap">
+      <input [(ngModel)]="password" type="password" [ngClass]="{'active':password!=''}" autocomplete="off" id="password">
+      <label [ngClass]="{'active':password!=''}">Password</label>
+    </div>
+    <div class="shortcut-check">
+      <h5 class="dot"></h5> {{totalUnreadFromOutside}} messages
+    </div>
+    <button type="button" (click)="submitLogin()" name="button">
+    <p>Login</p></button>
+  </div>
+</div>
